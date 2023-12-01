@@ -3,15 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { Day1Component } from './day1/day1.component';
-import { Day2Component } from './day2/day2.component';
-import { Day3Component } from './day3/day3.component';
-import { Day4Component } from './day4/day4.component';
-import { Day5Component } from './day5/day5.component';
-import { Day6Component } from './day6/day6.component';
-import { Day7Component } from './day7/day7.component';
-import { Day8Component } from './day8/day8.component';
-import { Day9Component } from './day9/day9.component';
+import { Day01Component } from './day01/day01.component';
+import { Day02Component } from './day02/day02.component';
+import { Day03Component } from './day03/day03.component';
+import { Day04Component } from './day04/day04.component';
+import { Day05Component } from './day05/day05.component';
+import { Day06Component } from './day06/day06.component';
+import { Day07Component } from './day07/day07.component';
+import { Day08Component } from './day08/day08.component';
+import { Day09Component } from './day09/day09.component';
 import { Day10Component } from './day10/day10.component';
 import { Day11Component } from './day11/day11.component';
 import { Day12Component } from './day12/day12.component';
@@ -27,21 +27,21 @@ import { Day21Component } from './day21/day21.component';
 import { Day22Component } from './day22/day22.component';
 import { Day23Component } from './day23/day23.component';
 import { Day24Component } from './day24/day24.component';
+import { DataService } from './data-service.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    Day1Component,
-    Day2Component,
-    Day1Component,
-    Day2Component,
-    Day3Component,
-    Day4Component,
-    Day5Component,
-    Day6Component,
-    Day7Component,
-    Day8Component,
-    Day9Component,
+    Day01Component,
+    Day01Component,
+    Day02Component,
+    Day03Component,
+    Day04Component,
+    Day05Component,
+    Day06Component,
+    Day07Component,
+    Day08Component,
+    Day09Component,
     Day10Component,
     Day11Component,
     Day12Component,
@@ -56,13 +56,10 @@ import { Day24Component } from './day24/day24.component';
     Day21Component,
     Day22Component,
     Day23Component,
-    Day24Component
+    Day24Component,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, AppRoutingModule],
+  providers: [DataService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

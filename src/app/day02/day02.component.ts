@@ -4,27 +4,52 @@ import { DataService } from '../data-service.service';
 @Component({
   selector: 'app-day02',
   templateUrl: './day02.component.html',
-  styleUrls: ['./day02.component.scss']
+  styleUrls: ['./day02.component.scss'],
 })
 export class Day02Component {
+  testData1: string[] = [];
+  testData2: string[] = [];
+  realData: string[] = [];
+
+  resultTest1 = 0;
+  resultTest2 = 0;
+  resultSolved1 = 0;
+  resultSolved2 = 0;
+
+  solvePuzzlePart_1(data: string[]): number {
+    return 1;
+  }
+
+  solvePuzzlePart_2(data: string[]): number {
+    return 1;
+  }
+
   testPart1() {
-    const data = this.dataService.getTestDataOfDay("01", 1)
-    //todo
+    this.resultTest1 = this.solvePuzzlePart_1(this.testData1);
   }
   solvePart1() {
-    const data = this.dataService.getDataOfDay("01", 1)
-    //todo
+    this.resultSolved1 = this.solvePuzzlePart_1(this.realData);
   }
 
   testPart2() {
-    const data = this.dataService.getTestDataOfDay("01", 2)
-    //todo
+    this.resultTest2 = this.solvePuzzlePart_2(this.testData2);
   }
 
   solvePart2() {
-    const data = this.dataService.getDataOfDay("01", 2)
-    //todo
+    this.resultSolved2 = this.solvePuzzlePart_2(this.realData);
   }
 
   constructor(private dataService: DataService) {}
+
+  ngOnInit() {
+    this.dataService.getTestDataOfDay('01', 1).subscribe((data: string) => {
+      this.testData1 = data.split('\r\n').slice(0, -1);
+    });
+    this.dataService.getTestDataOfDay('01', 2).subscribe((data: string) => {
+      this.testData2 = data.split('\r\n').slice(0, -1);
+    });
+    this.dataService.getDataOfDay('01').subscribe((data: string) => {
+      this.realData = data.split('\r\n').slice(0, -1);
+    });
+  }
 }

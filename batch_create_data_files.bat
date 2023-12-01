@@ -12,8 +12,7 @@ for /l %%i in (1, 1, 24) do (
     echo Created folder: !folderName!
 
     rem Create empty text files inside the folder
-    type nul > "!folderName!\data_day_!num!_part_1_real.txt"
-    type nul > "!folderName!\data_day_!num!_part_2_real.txt"
+    type nul > "!folderName!\data_day_!num!.txt"
     type nul > "!folderName!\data_day_!num!_part_1_test.txt"
     type nul > "!folderName!\data_day_!num!_part_2_test.txt"
 

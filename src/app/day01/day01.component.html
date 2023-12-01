@@ -1,1 +1,17 @@
-<p>day01 works!</p>
+<div>
+  <h1>Part 1</h1>
+  <button (click)="testPart1()">Test Part 1</button>
+  <button (click)="solvePart1()">Solve Part 1</button>
+  <h1 *ngIf="resultTest1">Test 1: {{ resultTest1 }}</h1>
+  <h1 *ngIf="resultSolved1">Solved 1: {{ resultSolved1 }}</h1>
+</div>
+
+<div>
+  <h1>Part 2</h1>
+  <button (click)="testPart2()">Test Part 2</button>
+  <button (click)="solvePart2()">Solve Part 2</button>
+  <h1 *ngIf="resultTest2">Test 2: {{ resultTest2 }}</h1>
+  <h1 *ngIf="resultSolved2">Solved 2: {{ resultSolved2 }}</h1>
+</div>
+
+

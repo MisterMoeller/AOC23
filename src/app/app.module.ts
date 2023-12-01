@@ -28,6 +28,7 @@ import { Day22Component } from './day22/day22.component';
 import { Day23Component } from './day23/day23.component';
 import { Day24Component } from './day24/day24.component';
 import { DataService } from './data-service.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,7 @@ import { DataService } from './data-service.service';
     Day23Component,
     Day24Component,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [DataService],
   bootstrap: [AppComponent],
 })

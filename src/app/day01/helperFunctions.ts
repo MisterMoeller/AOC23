@@ -1,4 +1,4 @@
-export function returnFirstNumber(str: string): string {
+export function returnFirstNumberInStringAsDigitOrText(str: string): string {
   let theNumber: string = '';
   let index = 1;
 

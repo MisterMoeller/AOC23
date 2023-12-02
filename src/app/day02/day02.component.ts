@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import { DataService } from '../data-service.service';
+import {
+  getHighestAmountOfColor,
+  parseDataToGame_day02,
+} from './helperFunctions';
+import { Game } from './types';
 
 @Component({
   selector: 'app-day02',
@@ -17,16 +22,39 @@ export class Day02Component {
   resultSolved2 = 0;
 
   solvePuzzlePart_1(data: string[]): number {
-    return 1;
+    const parsedGames: Game[] = parseDataToGame_day02(data);
+
+    const passingGames = parsedGames.filter((game) => {
+      return (
+        getHighestAmountOfColor(game, 'r') <= 12 &&
+        getHighestAmountOfColor(game, 'g') <= 13 &&
+        getHighestAmountOfColor(game, 'b') <= 14
+      );
+    });
+
+    return passingGames
+      .map((game) => game.id)
+      .reduce((prev, cur) => prev + cur);
   }
 
   solvePuzzlePart_2(data: string[]): number {
-    return 1;
+    const parsedGames: Game[] = parseDataToGame_day02(data);
+
+    return parsedGames
+      .map((game) => {
+        return (
+          getHighestAmountOfColor(game, 'r') *
+          getHighestAmountOfColor(game, 'g') *
+          getHighestAmountOfColor(game, 'b')
+        );
+      })
+      .reduce((prev, cur) => prev + cur);
   }
 
   testPart1() {
     this.resultTest1 = this.solvePuzzlePart_1(this.testData1);
   }
+
   solvePart1() {
     this.resultSolved1 = this.solvePuzzlePart_1(this.realData);
   }
@@ -42,13 +70,14 @@ export class Day02Component {
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    this.dataService.getTestDataOfDay('01', 1).subscribe((data: string) => {
+    const day = '02';
+    this.dataService.getTestDataOfDay(day, 1).subscribe((data: string) => {
       this.testData1 = data.split('\r\n').slice(0, -1);
     });
-    this.dataService.getTestDataOfDay('01', 2).subscribe((data: string) => {
+    this.dataService.getTestDataOfDay(day, 2).subscribe((data: string) => {
       this.testData2 = data.split('\r\n').slice(0, -1);
     });
-    this.dataService.getDataOfDay('01').subscribe((data: string) => {
+    this.dataService.getDataOfDay(day).subscribe((data: string) => {
       this.realData = data.split('\r\n').slice(0, -1);
     });
   }

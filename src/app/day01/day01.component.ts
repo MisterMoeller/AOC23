@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data-service.service';
-import { returnFirstNumber, returnLastNumber } from './helperFunctions';
+import { returnFirstNumberInStringAsDigitOrText, returnLastNumber } from './helperFunctions';
 
 @Component({
   selector: 'app-day01',
@@ -40,7 +40,7 @@ export class Day01Component implements OnInit {
 
   solvePuzzlePart_2(data: string[]): number {
     const convertedToNumbers: number[] = data.map((str: string): number => {
-      const firstDigit: string = returnFirstNumber(str);
+      const firstDigit: string = returnFirstNumberInStringAsDigitOrText(str);
       const secondDigit: string = returnLastNumber(str);
 
       const stringsAsNumber: number = Number.parseInt(firstDigit + secondDigit);

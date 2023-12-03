@@ -12,6 +12,6 @@ export class AppComponent {
   constructor(private router: Router){}
 
   ngOnInit() {
-    this.router.navigate(["/3"])
+    this.router.navigate(["/4"])
   }
 }

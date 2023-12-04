@@ -1,3 +1,4 @@
+import { returnFirstNumberInString } from '../globalHelpers';
 import { Game, Draw, Color } from './types';
 
 export function parseDataToGame_day02(data: string[]): Game[] {
@@ -24,20 +25,7 @@ export function parseDataToGame_day02(data: string[]): Game[] {
 }
 
 export function getHighestAmountOfColor(game: Game, color: Color) {
-  return Math.max(
-    ...game.draws
-      .filter((draw) => draw.color === color)
-      .map((draw) => draw.amount)
-  );
-}
-
-function returnFirstNumberInString(str: string): number {
-  const stringAsDigit = /\d+/.exec(str)?.[0];
-  if (!stringAsDigit) {
-    throw new Error(`didn't find number in ${stringAsDigit}`);
-  }
-
-  return Number.parseInt(stringAsDigit);
+  return Math.max(...game.draws.filter((draw) => draw.color === color).map((draw) => draw.amount));
 }
 
 function stringToColor(str: string): 'r' | 'g' | 'b' {

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { DataService } from '../data-service.service';
+import { parseData } from './helperFunctions';
+import { Card, ReducedCard as ReducedCard } from './types';
 
 @Component({
   selector: 'app-day04',
@@ -17,11 +19,47 @@ export class Day04Component {
   resultSolved2 = 0;
 
   solvePuzzlePart_1(data: string[]): number {
-    return 1;
+    const cards: Card[] = parseData(data);
+    for (let card of cards) {
+      card.hits = card.winningNumbers.filter((winningNumber: number) => {
+        if (card.pickedNumbers.includes(winningNumber)) {
+          return card.pickedNumbers.includes(winningNumber);
+        }
+        return false;
+      }).length;
+
+      if (card.hits > 0) {
+        card.value = Math.pow(2, card.hits - 1);
+      }
+    }
+
+    return cards.map((card) => card.value).reduce((prev, cur) => prev + cur);
   }
 
   solvePuzzlePart_2(data: string[]): number {
-    return 1;
+    const cards: Card[] = parseData(data);
+    for (let card of cards) {
+      card.hits = card.winningNumbers.filter((winningNumber: number) => {
+        if (card.pickedNumbers.includes(winningNumber)) {
+          return card.pickedNumbers.includes(winningNumber);
+        }
+        return false;
+      }).length;
+    }
+
+    const reducedCards: ReducedCard[] = cards.map((card) => {
+      return { amount: 1, hits: card.hits } as ReducedCard;
+    });
+
+    for (let i = 0; i < reducedCards.length; i++) {
+      const currentCard = reducedCards[i];
+
+      for (let j = 1; j <= currentCard.hits; j++) {
+        reducedCards[i + j].amount += currentCard.amount;
+      }
+    }
+
+    return reducedCards.map((card) => card.amount).reduce((prev, cur) => prev + cur);
   }
 
   testPart1() {

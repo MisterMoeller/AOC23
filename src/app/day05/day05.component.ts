@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DataService } from '../data-service.service';
+import { parseData } from './helperFunctions';
 
 @Component({
   selector: 'app-day05',
@@ -7,20 +8,23 @@ import { DataService } from '../data-service.service';
   styleUrls: ['./day05.component.scss'],
 })
 export class Day05Component {
-  testData1: string[] = [];
-  testData2: string[] = [];
-  realData: string[] = [];
+  testData1: string = "";
+  testData2: string = "";
+  realData: string = "";
 
   resultTest1 = 0;
   resultTest2 = 0;
   resultSolved1 = 0;
   resultSolved2 = 0;
 
-  solvePuzzlePart_1(data: string[]): number {
+
+
+  solvePuzzlePart_1(data: string): number {
+    parseData(data);
     return 1;
   }
 
-  solvePuzzlePart_2(data: string[]): number {
+  solvePuzzlePart_2(data: string): number {
     return 1;
   }
 
@@ -45,13 +49,13 @@ export class Day05Component {
   ngOnInit() {
     const day = '05';
     this.dataService.getTestDataOfDay(day, 1).subscribe((data: string) => {
-      this.testData1 = data.split('\r\n').slice(0, -1);
+      this.testData1 = data;
     });
     this.dataService.getTestDataOfDay(day, 2).subscribe((data: string) => {
-      this.testData2 = data.split('\r\n').slice(0, -1);
+      this.testData2 = data;
     });
     this.dataService.getDataOfDay(day).subscribe((data: string) => {
-      this.realData = data.split('\r\n').slice(0, -1);
+      this.realData = data;
     });
   }
 }

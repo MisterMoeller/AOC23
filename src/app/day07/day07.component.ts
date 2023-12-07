@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { DataService } from '../data-service.service';
+import { Hand } from './Hand';
+import { letHandsFightEachOther, parseDataToHands_part1, parseDataToHands_part2 } from './helperFunctions';
 
 @Component({
   selector: 'app-day07',
   templateUrl: './day07.component.html',
-  styleUrls: ['./day07.component.scss']
+  styleUrls: ['./day07.component.scss'],
 })
 export class Day07Component {
   testData1: string[] = [];
@@ -17,11 +19,25 @@ export class Day07Component {
   resultSolved2 = 0;
 
   solvePuzzlePart_1(data: string[]): number {
-    return 1
+    const parsedHands = parseDataToHands_part1(data);
+    const handsAfterFights: Hand[] = letHandsFightEachOther(parsedHands);
+
+    return handsAfterFights
+      .map((hand, index) => {
+        return hand.bid * (index + 1);
+      })
+      .reduce((prev, cur) => prev + cur);
   }
 
   solvePuzzlePart_2(data: string[]): number {
-    return 1
+    const parsedHands = parseDataToHands_part2(data);
+    const handsAfterFights: Hand[] = letHandsFightEachOther(parsedHands);
+
+    return handsAfterFights
+      .map((hand, index) => {
+        return hand.bid * (index + 1);
+      })
+      .reduce((prev, cur) => prev + cur);
   }
 
   testPart1() {

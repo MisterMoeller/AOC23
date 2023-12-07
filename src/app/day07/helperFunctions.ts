@@ -36,10 +36,7 @@ export function parseDataToHands_part2(data: string[]) {
 
 export function calcWinningTypeOfHand(cards: Card[]): { type: WinningType; strength: number } {
   const uniqueCards = new Set(cards.map((card) => card.label));
-  // console.log('This Card is being processed')
-  // console.log(cards.map(card => card.label).sort((a,b) => {return a > b ? 1 : -1}).join());
   if (uniqueCards.size === 1) {
-    // console.log(WinningType.FIVEOfAKIND)
     return { type: WinningType.FIVEOfAKIND, strength: 7 };
   }
 
@@ -48,7 +45,6 @@ export function calcWinningTypeOfHand(cards: Card[]): { type: WinningType; stren
       cards.filter((card) => card.label === Array.from(uniqueCards)[0]).length === 4 ||
       cards.filter((card) => card.label === Array.from(uniqueCards)[1]).length === 4
     ) {
-      // console.log(WinningType.FOUROFAKIND)
       return { type: WinningType.FOUROFAKIND, strength: 6 };
     }
 
@@ -56,7 +52,6 @@ export function calcWinningTypeOfHand(cards: Card[]): { type: WinningType; stren
       cards.filter((card) => card.label === Array.from(uniqueCards)[0]).length === 3 ||
       cards.filter((card) => card.label === Array.from(uniqueCards)[1]).length === 3
     ) {
-      // console.log(WinningType.FULLHOUSE)
       return { type: WinningType.FULLHOUSE, strength: 5 };
     }
   }
@@ -67,20 +62,16 @@ export function calcWinningTypeOfHand(cards: Card[]): { type: WinningType; stren
       cards.filter((card) => card.label === Array.from(uniqueCards)[1]).length === 3 ||
       cards.filter((card) => card.label === Array.from(uniqueCards)[2]).length === 3
     ) {
-      // console.log(WinningType.THREEOFAKIND)
       return { type: WinningType.THREEOFAKIND, strength: 4 };
     }
 
-    // console.log(WinningType.TWOPAIR)
     return { type: WinningType.TWOPAIR, strength: 3 };
   }
 
   if (uniqueCards.size === 4) {
-    // console.log(WinningType.ONEPAIR)
     return { type: WinningType.ONEPAIR, strength: 2 };
   }
 
-  // console.log(WinningType.HIGHCARD)
   return { type: WinningType.HIGHCARD, strength: 1 };
 }
 
